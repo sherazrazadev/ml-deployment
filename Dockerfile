@@ -12,4 +12,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 # 5. Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# -w 4:  Start 4 Workers (Handling 4 requests at once)
+# -k uvicorn.workers.UvicornWorker: Use FastAPI compatible workers
+# --bind: Listen on port 80
+CMD ["gunicorn", "-w", "8", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:80"]
