@@ -44,4 +44,4 @@ jobs:
             
             # 3. Run on PORT 8002
             # -p 8002:80 maps Host Port 8002 -> Container Port 80
-            docker run -d -p 8002:80 --name ml-container ${{ secrets.DOCKER_USERNAME }}/iris-model:latest
+            docker run -d -p 8003:80 --name ml-container ${{ secrets.DOCKER_USERNAME }}/iris-model:latest
